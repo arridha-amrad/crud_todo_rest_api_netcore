@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using crud_todo_rest_api_netcore.Dtos;
 using crud_todo_rest_api_netcore.Models;
 using crud_todo_rest_api_netcore.Repositories;
 
@@ -38,6 +39,11 @@ namespace crud_todo_rest_api_netcore.DBContext
         public bool SaveChanges()
         {
             return (_context.SaveChanges() >= 0);
+        }
+
+        public void UpdateTodo(TodoUpdateDto todo)
+        {
+            // nothing
         }
     }
 }

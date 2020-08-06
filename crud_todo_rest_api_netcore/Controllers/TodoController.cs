@@ -48,5 +48,22 @@ namespace crud_todo_rest_api_netcore.Controllers
             return CreatedAtRoute(nameof(GetTodoById), new { Id = newTodo.Id }, responseBody);
 
         }
+
+        [HttpPut("{id}")]
+        public ActionResult UpdateTodo(int id, TodoUpdateDto todoUpdateDto)
+        {
+            var existingTodo = _repository.GetTodoById(id);
+            if(existingTodo == null)
+            {
+                return NotFound();
+            }
+
+            _mapper.Map(todoUpdateDto, existingTodo);
+
+            _repository.UpdateTodo(todoUpdateDto);
+            _repository.SaveChanges();
+
+            return NoContent();
+        }
     }
 }

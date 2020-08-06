@@ -12,6 +12,7 @@ namespace crud_todo_rest_api_netcore.Profiles
             // source -> target
             CreateMap<Todo, TodoReadDto>();
             CreateMap<TodoCreateDto, Todo>();
+            CreateMap<TodoUpdateDto, Todo>();
         }
     }
 }
