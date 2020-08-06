@@ -11,7 +11,14 @@ namespace crud_todo_rest_api_netcore.Repositories
         {
         }
 
+        
+
         public void CreateNewTodo(Todo todo)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteTodo(Todo todo)
         {
             throw new NotImplementedException();
         }

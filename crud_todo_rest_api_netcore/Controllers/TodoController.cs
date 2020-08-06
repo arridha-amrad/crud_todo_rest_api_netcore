@@ -65,5 +65,18 @@ namespace crud_todo_rest_api_netcore.Controllers
 
             return NoContent();
         }
+
+        [HttpDelete("{id}")]
+        public ActionResult DeleteTodo(int id)
+        {
+            var existingTodo = _repository.GetTodoById(id);
+            if(existingTodo == null)
+            {
+                return NotFound();
+            }
+            _repository.DeleteTodo(existingTodo);
+            _repository.SaveChanges();
+            return NoContent();
+        }
     }
 }

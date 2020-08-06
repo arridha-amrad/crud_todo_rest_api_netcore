@@ -11,6 +11,7 @@ namespace crud_todo_rest_api_netcore.Repositories
         Todo GetTodoById(int id);
         void CreateNewTodo(Todo todo);
         void UpdateTodo(TodoUpdateDto todo);
+        void DeleteTodo(Todo todo);
         bool SaveChanges();
     }
 }

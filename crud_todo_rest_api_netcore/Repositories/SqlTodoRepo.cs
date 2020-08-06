@@ -26,6 +26,15 @@ namespace crud_todo_rest_api_netcore.DBContext
             _context.Todos.Add(todo);
         }
 
+        public void DeleteTodo(Todo todo)
+        {
+            if(todo == null)
+            {
+                throw new ArgumentNullException(nameof(todo));
+            }
+            _context.Todos.Remove(todo);
+        }
+
         public IEnumerable<Todo> GetAllTodos()
         {
             return _context.Todos.ToList();
