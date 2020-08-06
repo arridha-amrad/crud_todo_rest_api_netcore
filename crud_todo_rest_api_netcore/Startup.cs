@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using crud_todo_rest_api_netcore.DBContext;
 using crud_todo_rest_api_netcore.Repositories;
 using Microsoft.AspNetCore.Builder;
@@ -35,7 +36,11 @@ namespace crud_todo_rest_api_netcore
 
             services.AddDbContext<TodoContext>(options =>
             options.UseNpgsql(Configuration.GetConnectionString("MyDBConnection")));
+
             services.AddScoped<ITodoRepo, SqlTodoRepo>();
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
