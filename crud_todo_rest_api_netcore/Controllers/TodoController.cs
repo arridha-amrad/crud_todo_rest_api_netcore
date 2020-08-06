@@ -27,13 +27,17 @@ namespace crud_todo_rest_api_netcore.Controllers
         {
             var todos = _repository.GetAllTodos();
 
-            return Ok(_mapper.Map<IEnumerable<TodoReadDto>>(todos));
+            return Ok(_mapper.Map<IEnumerable<Todo>>(todos));
         }
 
         [HttpGet("{id}", Name = "GetTodoById")]
-        public ActionResult<Todo> GetTodoById(int id)
+        public ActionResult<TodoReadDto> GetTodoById(int id)
         {
             var todo = _repository.GetTodoById(id);
+            if(todo == null)
+            {
+                return NotFound();
+            }
             return Ok(_mapper.Map<TodoReadDto>(todo));
         }
 
