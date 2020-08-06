@@ -30,10 +30,12 @@ namespace crud_todo_rest_api_netcore
         {
             services.AddControllers();
 
-            services.AddScoped<ITodoRepo, DummyTodoRepo>();
+            //services.AddScoped<ITodoRepo, DummyTodoRepo>();
+            services.AddScoped<ITodoRepo, SqlTodoRepo>();
 
             services.AddDbContext<TodoContext>(options =>
             options.UseNpgsql(Configuration.GetConnectionString("MyDBConnection")));
+            services.AddScoped<ITodoRepo, SqlTodoRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
