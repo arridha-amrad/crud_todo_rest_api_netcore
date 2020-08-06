@@ -10,19 +10,24 @@ namespace crud_todo_rest_api_netcore.Controllers
     [Route("/api/todo")]
     public class TodoController : ControllerBase
     {
-        public readonly DummyTodoRepo repository = new DummyTodoRepo();
+        public readonly ITodoRepo _repository;
+
+        public TodoController(ITodoRepo repository)
+        {
+            _repository = repository;
+        }
 
         [HttpGet]
         public ActionResult<IEnumerable<Todo>> GetAllTodos()
         {
-            var todos = repository.GetAllTodos();
+            var todos = _repository.GetAllTodos();
             return Ok(todos);
         }
 
         [HttpGet("{id}")]
         public ActionResult<Todo> GetTodoById(int id)
         {
-            var todo = repository.GetTodoById(id);
+            var todo = _repository.GetTodoById(id);
             return Ok(todo);
         }
     }

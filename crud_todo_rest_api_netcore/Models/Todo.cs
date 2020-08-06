@@ -18,5 +18,10 @@ namespace crud_todo_rest_api_netcore.Models
         [Required]
         public bool Is_Done { get; set; }
 
+        public Todo()
+        {
+            Is_Done = false;
+        }
+
     }
 }
