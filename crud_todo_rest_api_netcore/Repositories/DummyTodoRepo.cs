@@ -10,6 +10,11 @@ namespace crud_todo_rest_api_netcore.Repositories
         {
         }
 
+        public void CreateNewTodo(Todo todo)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Todo> GetAllTodos()
         {
             var todos = new List<Todo>
@@ -24,6 +29,11 @@ namespace crud_todo_rest_api_netcore.Repositories
         public Todo GetTodoById(int id)
         {
             return new Todo { Id = 0, Title = "Learning C#", Description = "Learning C# from online course", Is_Done = false };
+        }
+
+        public bool SaveChanges()
+        {
+            throw new NotImplementedException();
         }
     }
 }

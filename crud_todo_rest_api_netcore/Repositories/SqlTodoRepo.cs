@@ -16,6 +16,15 @@ namespace crud_todo_rest_api_netcore.DBContext
             _context = context;
         }
 
+        public void CreateNewTodo(Todo todo)
+        {
+            if(todo == null)
+            {
+                throw new ArgumentNullException(nameof(todo));
+            }
+            _context.Todos.Add(todo);
+        }
+
         public IEnumerable<Todo> GetAllTodos()
         {
             return _context.Todos.ToList();
@@ -24,6 +33,11 @@ namespace crud_todo_rest_api_netcore.DBContext
         public Todo GetTodoById(int id)
         {
             return _context.Todos.FirstOrDefault(p => p.Id == id);
+        }
+
+        public bool SaveChanges()
+        {
+            return (_context.SaveChanges() >= 0);
         }
     }
 }

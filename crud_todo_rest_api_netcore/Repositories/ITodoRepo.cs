@@ -8,5 +8,7 @@ namespace crud_todo_rest_api_netcore.Repositories
     {
         IEnumerable<Todo> GetAllTodos();
         Todo GetTodoById(int id);
+        void CreateNewTodo(Todo todo);
+        bool SaveChanges();
     }
 }

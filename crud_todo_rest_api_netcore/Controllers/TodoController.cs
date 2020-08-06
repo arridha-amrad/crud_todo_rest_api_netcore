@@ -30,11 +30,23 @@ namespace crud_todo_rest_api_netcore.Controllers
             return Ok(_mapper.Map<IEnumerable<TodoReadDto>>(todos));
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetTodoById")]
         public ActionResult<Todo> GetTodoById(int id)
         {
             var todo = _repository.GetTodoById(id);
             return Ok(_mapper.Map<TodoReadDto>(todo));
+        }
+
+        [HttpPost]
+        public ActionResult<Todo> CreateNewTodo(TodoCreateDto todoCreateDto)
+        {
+            var newTodo = _mapper.Map<Todo>(todoCreateDto);
+            _repository.CreateNewTodo(newTodo);
+            _repository.SaveChanges();
+
+            var responseBody = _mapper.Map<TodoReadDto>(newTodo);
+            return CreatedAtRoute(nameof(GetTodoById), new { Id = newTodo.Id }, responseBody);
+
         }
     }
 }
